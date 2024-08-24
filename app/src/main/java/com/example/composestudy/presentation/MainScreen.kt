@@ -1,0 +1,29 @@
+package com.example.composestudy.presentation
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import com.example.composestudy.navigation.AppNavGraph
+import com.example.composestudy.navigation.rememberNavigationState
+import com.example.composestudy.presentation.homeScreen.HomeScreen
+import com.example.composestudy.presentation.trafficLight.TrafficLightScreen
+
+@Composable
+fun MainScreen(
+    modifier: Modifier = Modifier
+) {
+    val navigationState = rememberNavigationState()
+
+    Scaffold(modifier) {
+        AppNavGraph(
+            navHostController = navigationState.navHostController,
+            homeScreen = {
+                HomeScreen(modifier = modifier.padding(it)) {
+                    navigationState.navigateTo(it.toString())
+                }
+            },
+            trafficLightScreen = { TrafficLightScreen() }
+        )
+    }
+}
