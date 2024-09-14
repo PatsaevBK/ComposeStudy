@@ -1,31 +1,31 @@
-package com.example.composestudy.data.trafficLight
+package com.example.composestudy.presentation.trafficLight.store
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.example.composestudy.data.trafficLight.TrafficLightStore.Intent
-import com.example.composestudy.data.trafficLight.TrafficLightStore.Label
-import com.example.composestudy.data.trafficLight.TrafficLightStore.State
-import com.example.composestudy.data.trafficLight.TrafficLightStore.State.Colors.GREEN
-import com.example.composestudy.data.trafficLight.TrafficLightStore.State.Colors.NONE
-import com.example.composestudy.data.trafficLight.TrafficLightStore.State.Colors.RED
-import com.example.composestudy.data.trafficLight.TrafficLightStore.State.Colors.YELLOW
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.Intent
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.Label
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.State
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.State.Colors.GREEN
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.State.Colors.RED
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.State.Colors.YELLOW
+import javax.inject.Inject
 
-internal class TrafficLightStoreFactory {
+internal class TrafficLightStoreFactory @Inject constructor(
+    private val storeFactory: StoreFactory,
+) {
 
-    fun create(
-        storeFactory: StoreFactory,
-    ): TrafficLightStore = object : TrafficLightStore,
+    fun create(): TrafficLightStore = object : TrafficLightStore,
         Store<Intent, State, Label> by storeFactory.create(
             name = "TrafficLightStore",
             initialState = State(
-                colors = listOf(),
-                selected = NONE
+                colors = State.Colors.entries,
+                selected = RED
             ),
             bootstrapper = BootstrapperImpl(),
-            executorFactory = ::ExecutorImpl,
+            executorFactory = { ExecutorImpl() },
             reducer = ReducerImpl(),
         ) {}
 
@@ -58,7 +58,6 @@ internal class TrafficLightStoreFactory {
                         RED -> YELLOW
                         YELLOW -> GREEN
                         GREEN -> RED
-                        NONE -> RED
                     }
                     dispatch(Message.NextColor(nextColor))
                 }

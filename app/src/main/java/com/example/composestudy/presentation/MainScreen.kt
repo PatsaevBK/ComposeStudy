@@ -5,6 +5,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.composestudy.navigation.AppNavGraph
+import com.example.composestudy.navigation.Screens
 import com.example.composestudy.navigation.rememberNavigationState
 import com.example.composestudy.presentation.homeScreen.HomeScreen
 import com.example.composestudy.presentation.trafficLight.TrafficLightScreen
@@ -23,7 +24,13 @@ fun MainScreen(
                     navigationState.navigateTo(it.toString())
                 }
             },
-            trafficLightScreen = { TrafficLightScreen() }
+            trafficLightScreen = { trafficLightViewModel ->
+                TrafficLightScreen(
+                    trafficLightViewModel = trafficLightViewModel,
+                    modifier.padding(it),
+                    title = Screens.TrafficLights.toString()
+                ) { navigationState.navHostController.popBackStack() }
+            }
         )
     }
 }

@@ -1,9 +1,9 @@
-package com.example.composestudy.data.trafficLight
+package com.example.composestudy.presentation.trafficLight.store
 
 import com.arkivanov.mvikotlin.core.store.Store
-import com.example.composestudy.data.trafficLight.TrafficLightStore.Intent
-import com.example.composestudy.data.trafficLight.TrafficLightStore.Label
-import com.example.composestudy.data.trafficLight.TrafficLightStore.State
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.Intent
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.Label
+import com.example.composestudy.presentation.trafficLight.store.TrafficLightStore.State
 
 internal interface TrafficLightStore : Store<Intent, State, Label> {
     data class State(
@@ -11,10 +11,9 @@ internal interface TrafficLightStore : Store<Intent, State, Label> {
         val selected: Colors
     ) {
         enum class Colors {
-            RED, YELLOW, GREEN, NONE
+            RED, YELLOW, GREEN
         }
     }
-
 
     sealed interface Intent {
         data object NextColor : Intent

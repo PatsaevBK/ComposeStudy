@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -73,6 +74,8 @@ dependencies {
     implementation(libs.mvikotlin.main)
     implementation(libs.mvikotlin.logging)
     implementation(libs.mvikotlin.coroutines)
+    implementation(libs.dagger)
+    kapt(libs.kapt)
 
     implementation(libs.kotlinx.serialization.json)
 }
