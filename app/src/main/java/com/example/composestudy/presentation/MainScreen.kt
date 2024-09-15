@@ -21,7 +21,7 @@ fun MainScreen(
             navHostController = navigationState.navHostController,
             homeScreen = {
                 HomeScreen(modifier = modifier.padding(it)) {
-                    navigationState.navigateTo(it.toString())
+                    navigationState.navigateTo(it)
                 }
             },
             trafficLightScreen = { trafficLightViewModel ->

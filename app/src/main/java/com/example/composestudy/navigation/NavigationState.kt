@@ -9,7 +9,7 @@ internal class NavigationState(
     val navHostController: NavHostController
 ) {
 
-    fun navigateTo(route: String) {
+    fun navigateTo(route: Screens) {
         navHostController.navigate(route) {
 //            пока не нужно (позволяет убрать все из стека навигации до стартового экрана = Home)
 //            popUpTo(navHostController.graph.findStartDestination().id) {

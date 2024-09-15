@@ -20,9 +20,9 @@ internal fun AppNavGraph(
     homeScreen: @Composable () -> Unit,
     trafficLightScreen: @Composable (viewModel: TrafficLightViewModel) -> Unit,
 ) {
-    NavHost(navController = navHostController, startDestination = Home.toString()) {
-        composable(Home.toString()) { homeScreen() }
-        composable(TrafficLights.toString()) {
+    NavHost(navController = navHostController, startDestination = Home) {
+        composable<Home> { homeScreen() }
+        composable<TrafficLights> {
             Log.d("XXX", "composable(TrafficLights)")
             val lifecycle: Lifecycle = remember {
                 Log.d("XXX", "it.essentyLifecycle()")
@@ -35,6 +35,9 @@ internal fun AppNavGraph(
                 factory = trafficLightComponent.getViewModelFactory(),
             )
             trafficLightScreen(trafficLightViewModel)
+        }
+        composable<Screens.ManyStores> {
+
         }
     }
 }
