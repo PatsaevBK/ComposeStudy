@@ -1,6 +1,5 @@
 package com.example.composestudy.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,16 +24,11 @@ internal fun AppNavGraph(
     NavHost(navController = navHostController, startDestination = Home) {
         composable<Home> { homeScreen() }
         composable<TrafficLights> {
-            Log.d("XXX", "composable(TrafficLights)")
             val lifecycle: Lifecycle = remember {
-                Log.d("XXX", "it.essentyLifecycle()")
                 it.essentyLifecycle()
             }
             val trafficLightComponent =
                 getApplicationComponent().getTrafficLightComponentFactory().create(lifecycle)
-            val rem = remember(key1 = it) {
-                true
-            }
             val trafficLightViewModel = viewModel<TrafficLightViewModel>(
                 viewModelStoreOwner = it,
                 factory = trafficLightComponent.getViewModelFactory(),

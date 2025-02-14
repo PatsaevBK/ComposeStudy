@@ -10,31 +10,64 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+private val LightColorScheme = darkColorScheme(
+    primary = Color(0xFF00796B), // Глубокий бирюзовый
+    onPrimary = Color(0xFFFFFFFF),
+    primaryContainer = Color(0xFFB2DFDB),
+    onPrimaryContainer = Color(0xFF004D40),
+
+    secondary = Color(0xFF558B2F), // Тёмно-зелёный
+    onSecondary = Color(0xFFFFFFFF),
+    secondaryContainer = Color(0xFFDCE775),
+    onSecondaryContainer = Color(0xFF33691E),
+
+    tertiary = Color(0xFFF57C00), // Оранжевый
+    onTertiary = Color(0xFFFFFFFF),
+    tertiaryContainer = Color(0xFFFFECB3),
+    onTertiaryContainer = Color(0xFFE65100),
+
+    background = Color(0xFFF5F5F5), // Светлый серый
+    onBackground = Color(0xFF212121),
+    surface = Color(0xFFFFFFFF),
+    onSurface = Color(0xFF424242),
+
+    error = Color(0xFFD32F2F),
+    onError = Color(0xFFFFFFFF),
+    errorContainer = Color(0xFFFFCDD2),
+    onErrorContainer = Color(0xFFB71C1C)
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+private val DarkColorScheme = lightColorScheme(
+    primary = Color(0xFF009688), // Светлый бирюзовый
+    onPrimary = Color(0xFF000000),
+    primaryContainer = Color(0xFF004D40),
+    onPrimaryContainer = Color(0xFFB2DFDB),
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    secondary = Color(0xFF8BC34A), // Яркий зелёный
+    onSecondary = Color(0xFF000000),
+    secondaryContainer = Color(0xFF33691E),
+    onSecondaryContainer = Color(0xFFDCE775),
+
+    tertiary = Color(0xFFFF9800), // Яркий оранжевый
+    onTertiary = Color(0xFF000000),
+    tertiaryContainer = Color(0xFFE65100),
+    onTertiaryContainer = Color(0xFFFFECB3),
+
+    background = Color(0xFF303030), // Тёмно-серый
+    onBackground = Color(0xFFF5F5F5),
+    surface = Color(0xFF424242),
+    onSurface = Color(0xFFFFFFFF),
+
+    error = Color(0xFFCF6679),
+    onError = Color(0xFF000000),
+    errorContainer = Color(0xFFB00020),
+    onErrorContainer = Color(0xFFFFCDD2)
 )
 
 @Composable

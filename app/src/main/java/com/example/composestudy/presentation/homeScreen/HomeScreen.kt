@@ -1,6 +1,8 @@
 package com.example.composestudy.presentation.homeScreen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,14 +13,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composestudy.navigation.Screens
+import com.example.composestudy.presentation.theme.ComposeStudyTheme
 
 @Composable
 internal fun HomeScreen(modifier: Modifier, onButtonClickListener: (Screens) -> Unit) {
-    LazyColumn(modifier = modifier.fillMaxSize().padding(4.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    LazyColumn(modifier = modifier
+        .fillMaxSize()
+        .padding(4.dp), horizontalAlignment = Alignment.CenterHorizontally, contentPadding = PaddingValues(5.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
         item {
             Button(onClick = { onButtonClickListener(Screens.TrafficLights) }) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -40,10 +45,12 @@ internal fun HomeScreen(modifier: Modifier, onButtonClickListener: (Screens) -> 
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 fun HomeScreen_Preview() {
-    HomeScreen(modifier = Modifier) {
+    ComposeStudyTheme {
+        HomeScreen(modifier = Modifier) {
 
+        }
     }
 }
