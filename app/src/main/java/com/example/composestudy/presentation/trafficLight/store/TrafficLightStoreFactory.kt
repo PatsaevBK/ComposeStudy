@@ -17,10 +17,11 @@ internal class TrafficLightStoreFactory @Inject constructor(
     private val storeFactory: StoreFactory,
 ) {
 
-    fun create(): TrafficLightStore = object : TrafficLightStore,
+    fun create(id: Int = 0): TrafficLightStore = object : TrafficLightStore,
         Store<Intent, State, Label> by storeFactory.create(
             name = "TrafficLightStore",
             initialState = State(
+                id = id,
                 colors = State.Colors.entries,
                 selected = RED
             ),

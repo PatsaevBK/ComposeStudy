@@ -9,7 +9,7 @@ import com.example.composestudy.presentation.trafficLight.store.TrafficLightView
 import com.example.composestudy.presentation.trafficLight.store.TrafficLightView.Model
 
 internal class TrafficLightViewImpl: BaseMviView<Model, Event>(), TrafficLightView {
-    private val _model = mutableStateOf(Model(Pair(emptyList(), Model.Colors.YELLOW)))
+    private val _model = mutableStateOf(Model(0, Pair(emptyList(), Model.Colors.YELLOW)))
     val model: State<Model> = _model
     override fun render(model: Model) {
         Log.d("XXX", "render $model")

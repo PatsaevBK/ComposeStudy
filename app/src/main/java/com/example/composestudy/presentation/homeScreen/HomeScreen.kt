@@ -28,6 +28,15 @@ internal fun HomeScreen(modifier: Modifier, onButtonClickListener: (Screens) -> 
                 }
             }
         }
+        item {
+            Button(onClick = { onButtonClickListener(Screens.ManyStores) }) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(text = "${Screens.ManyStores}")
+                    HorizontalDivider()
+                    Text(text = Screens.ManyStores.description, fontStyle = FontStyle.Italic, fontSize = 8.sp)
+                }
+            }
+        }
     }
 }
 

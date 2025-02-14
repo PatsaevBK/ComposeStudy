@@ -18,7 +18,8 @@ internal class TrafficLightTransformerImpl @Inject constructor(): TrafficLightTr
 
 
     private fun State.toModel(): TrafficLightView.Model = TrafficLightView.Model(
-        Pair(colors.toModel(), selected.selected())
+        id = id,
+        selectedColor = Pair(colors.toModel(), selected.selected())
     )
 
     private fun List<State.Colors>.toModel() = map {

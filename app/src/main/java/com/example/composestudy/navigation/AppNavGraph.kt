@@ -12,6 +12,7 @@ import com.arkivanov.essenty.lifecycle.essentyLifecycle
 import com.example.composestudy.getApplicationComponent
 import com.example.composestudy.navigation.Screens.Home
 import com.example.composestudy.navigation.Screens.TrafficLights
+import com.example.composestudy.presentation.manyStores.ManyStoresViewModel
 import com.example.composestudy.presentation.trafficLight.TrafficLightViewModel
 
 @Composable
@@ -19,6 +20,7 @@ internal fun AppNavGraph(
     navHostController: NavHostController,
     homeScreen: @Composable () -> Unit,
     trafficLightScreen: @Composable (viewModel: TrafficLightViewModel) -> Unit,
+    manyStoresScreen: @Composable (viewModel: ManyStoresViewModel) -> Unit,
 ) {
     NavHost(navController = navHostController, startDestination = Home) {
         composable<Home> { homeScreen() }
@@ -30,6 +32,9 @@ internal fun AppNavGraph(
             }
             val trafficLightComponent =
                 getApplicationComponent().getTrafficLightComponentFactory().create(lifecycle)
+            val rem = remember(key1 = it) {
+                true
+            }
             val trafficLightViewModel = viewModel<TrafficLightViewModel>(
                 viewModelStoreOwner = it,
                 factory = trafficLightComponent.getViewModelFactory(),
@@ -37,7 +42,15 @@ internal fun AppNavGraph(
             trafficLightScreen(trafficLightViewModel)
         }
         composable<Screens.ManyStores> {
-
+            val lifecycle = remember {
+                it.essentyLifecycle()
+            }
+            val manyStoresComponent = getApplicationComponent().getManyStoresComponent().create(lifecycle)
+            val manyStoresViewModel = viewModel<ManyStoresViewModel>(
+                viewModelStoreOwner = it,
+                factory = manyStoresComponent.getViewModelFactory()
+            )
+            manyStoresScreen(manyStoresViewModel)
         }
     }
 }

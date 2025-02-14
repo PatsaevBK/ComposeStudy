@@ -15,7 +15,6 @@ internal class TrafficLightViewModel @Inject constructor(
 
     init {
         controller.onViewCreated(trafficLightViewImpl, lifecycle)
-
     }
 
     fun nextColor() {

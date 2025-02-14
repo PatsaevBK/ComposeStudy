@@ -36,7 +36,7 @@ internal fun TrafficLightScreen(
                 IconButton(onClick = onBackPressed) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = null
+                        contentDescription =ß null
                     )
                 }
             })
@@ -66,6 +66,7 @@ private fun TrafficLightScreen_Preview() {
     val viewModel = TrafficLightViewModel(object : TrafficLightController {
         override fun onViewCreated(view: TrafficLightView, lifecycle: Lifecycle) {
             TrafficLightView.Model(
+                0,
                 Pair(
                     TrafficLightView.Model.Colors.entries.toList(),
                     TrafficLightView.Model.Colors.RED
