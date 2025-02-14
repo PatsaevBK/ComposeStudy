@@ -36,7 +36,7 @@ internal fun TrafficLightScreen(
                 IconButton(onClick = onBackPressed) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription =ß null
+                        contentDescription = null
                     )
                 }
             })
