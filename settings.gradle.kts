@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ComposeStudy"
 include(":app")
- 
+include(":composestudycatalog")

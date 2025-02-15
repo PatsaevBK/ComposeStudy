@@ -1,6 +1,7 @@
-package com.example.composestudy.di
+package com.example.composestudy.di.trafficLight
 
 import androidx.lifecycle.ViewModel
+import com.example.composestudy.di.ViewModelKey
 import com.example.composestudy.presentation.trafficLight.TrafficLightViewModel
 import dagger.Binds
 import dagger.Module

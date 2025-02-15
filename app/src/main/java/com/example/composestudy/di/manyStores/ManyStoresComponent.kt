@@ -1,19 +1,16 @@
-package com.example.composestudy.di
+package com.example.composestudy.di.manyStores
 
 import com.arkivanov.essenty.lifecycle.Lifecycle
 import com.example.composestudy.presentation.ViewModelFactory
 import dagger.BindsInstance
 import dagger.Subcomponent
 
-@Subcomponent(modules = [TrafficLightViewModelModule::class])
-interface TrafficLightComponent {
-
+@Subcomponent(modules = [ManyStoresViewModelModule::class])
+interface ManyStoresComponent {
     fun getViewModelFactory(): ViewModelFactory
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(
-            @BindsInstance lifecycle: Lifecycle
-        ): TrafficLightComponent
+        fun create(@BindsInstance lifecycle: Lifecycle): ManyStoresComponent
     }
 }

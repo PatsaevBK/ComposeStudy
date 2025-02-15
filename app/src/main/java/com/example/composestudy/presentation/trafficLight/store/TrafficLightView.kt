@@ -6,6 +6,7 @@ import com.example.composestudy.presentation.trafficLight.store.TrafficLightView
 
 interface TrafficLightView : MviView<Model, Event> {
     data class Model(
+        val id: Int,
         val selectedColor: Pair<List<Colors>, Colors>
     ) {
         enum class Colors {

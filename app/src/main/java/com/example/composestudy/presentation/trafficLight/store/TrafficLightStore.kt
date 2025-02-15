@@ -7,6 +7,7 @@ import com.example.composestudy.presentation.trafficLight.store.TrafficLightStor
 
 internal interface TrafficLightStore : Store<Intent, State, Label> {
     data class State(
+        val id: Int,
         val colors: List<Colors>,
         val selected: Colors
     ) {
