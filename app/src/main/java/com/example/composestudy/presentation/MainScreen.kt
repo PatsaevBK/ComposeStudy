@@ -39,7 +39,8 @@ fun MainScreen(
                     modifier = modifier.padding(it),
                     onBackPressed = { navigationState.navHostController.popBackStack() }
                 )
-            }
+            },
+            decompose = {  }
         )
     }
 }
