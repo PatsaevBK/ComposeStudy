@@ -48,7 +48,7 @@ internal fun AppNavGraph(
             manyStoresScreen(manyStoresViewModel)
         }
         composable<Screens.Decompose> {
-
+            decompose.invoke()
         }
     }
 }

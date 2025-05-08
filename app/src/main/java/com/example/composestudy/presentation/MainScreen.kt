@@ -7,13 +7,16 @@ import androidx.compose.ui.Modifier
 import com.example.composestudy.navigation.AppNavGraph
 import com.example.composestudy.navigation.Screens
 import com.example.composestudy.navigation.rememberNavigationState
+import com.example.composestudy.presentation.decompose.CustomNavigationContent
+import com.example.composestudy.presentation.decompose.root.RootComponent
 import com.example.composestudy.presentation.homeScreen.HomeScreen
 import com.example.composestudy.presentation.manyStores.ManyStoresScreen
 import com.example.composestudy.presentation.trafficLight.TrafficLightScreen
 
 @Composable
 fun MainScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    rootComponent: RootComponent,
 ) {
     val navigationState = rememberNavigationState()
 
@@ -40,7 +43,9 @@ fun MainScreen(
                     onBackPressed = { navigationState.navHostController.popBackStack() }
                 )
             },
-            decompose = {  }
+            decompose = {
+                CustomNavigationContent(rootComponent)
+            }
         )
     }
 }

@@ -81,8 +81,10 @@ dependencies {
     kapt(libs.kapt)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+//    implementation(libs.dagger.producers)
 
-    implementation(libs.decompose)
+    implementation(libs.decompose.core)
+    implementation(libs.decompose.jetpack)
 
     implementation(libs.kotlinx.serialization.json)
 }
