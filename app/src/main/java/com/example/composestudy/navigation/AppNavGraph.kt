@@ -20,6 +20,7 @@ internal fun AppNavGraph(
     homeScreen: @Composable () -> Unit,
     trafficLightScreen: @Composable (viewModel: TrafficLightViewModel) -> Unit,
     manyStoresScreen: @Composable (viewModel: ManyStoresViewModel) -> Unit,
+    decompose: @Composable () -> Unit,
 ) {
     NavHost(navController = navHostController, startDestination = Home) {
         composable<Home> { homeScreen() }
@@ -45,6 +46,9 @@ internal fun AppNavGraph(
                 factory = manyStoresComponent.getViewModelFactory()
             )
             manyStoresScreen(manyStoresViewModel)
+        }
+        composable<Screens.Decompose> {
+            decompose.invoke()
         }
     }
 }

@@ -21,15 +21,24 @@ import com.example.composestudy.presentation.theme.ComposeStudyTheme
 
 @Composable
 internal fun HomeScreen(modifier: Modifier, onButtonClickListener: (Screens) -> Unit) {
-    LazyColumn(modifier = modifier
-        .fillMaxSize()
-        .padding(4.dp), horizontalAlignment = Alignment.CenterHorizontally, contentPadding = PaddingValues(5.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        contentPadding = PaddingValues(5.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp)
+    ) {
         item {
             Button(onClick = { onButtonClickListener(Screens.TrafficLights) }) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(text = "${Screens.TrafficLights}")
                     HorizontalDivider()
-                    Text(text = Screens.TrafficLights.description, fontStyle = FontStyle.Italic, fontSize = 8.sp)
+                    Text(
+                        text = Screens.TrafficLights.description,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 8.sp
+                    )
                 }
             }
         }
@@ -38,7 +47,24 @@ internal fun HomeScreen(modifier: Modifier, onButtonClickListener: (Screens) -> 
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(text = "${Screens.ManyStores}")
                     HorizontalDivider()
-                    Text(text = Screens.ManyStores.description, fontStyle = FontStyle.Italic, fontSize = 8.sp)
+                    Text(
+                        text = Screens.ManyStores.description,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 8.sp
+                    )
+                }
+            }
+        }
+        item {
+            Button(onClick = { onButtonClickListener(Screens.Decompose) }) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(text = "${Screens.Decompose}")
+                    HorizontalDivider()
+                    Text(
+                        text = Screens.Decompose.description,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 8.sp
+                    )
                 }
             }
         }

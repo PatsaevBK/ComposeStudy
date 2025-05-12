@@ -19,4 +19,10 @@ internal sealed interface Screens {
     data object ManyStores : Screens {
         override val description: String = "Try to use more than one store for screen"
     }
+
+    @Serializable
+    data object Decompose : Screens {
+        override val description: String
+            get() = "Understand custom decompose navigation"
+    }
 }

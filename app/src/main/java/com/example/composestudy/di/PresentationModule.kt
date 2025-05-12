@@ -18,8 +18,10 @@ import com.example.composestudy.presentation.trafficLight.store.TrafficLightTran
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.migration.DisableInstallInCheck
 
 @Module
+@DisableInstallInCheck
 internal interface PresentationModule {
 
     @Binds
