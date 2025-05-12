@@ -8,16 +8,21 @@ import com.arkivanov.decompose.router.children.SimpleChildNavState
 import com.arkivanov.decompose.router.children.SimpleNavigation
 import com.arkivanov.decompose.router.children.children
 import com.arkivanov.decompose.value.Value
+import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.example.composestudy.presentation.decompose.Images
 import com.example.composestudy.presentation.decompose.root.RootComponent.Children
 import com.example.composestudy.presentation.decompose.root.RootComponent.Mode
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.Serializable
 
 class RootComponentImpl(
     componentContext: ComponentContext,
+    defaultStoreFactory: DefaultStoreFactory,
 ) : RootComponent, ComponentContext by componentContext {
 
     private val nav = SimpleNavigation<(NavigationState) -> NavigationState>()
+    private val scope = CoroutineScope(Dispatchers.Main.immediate)
 
     private val _children: Value<Children<Config, DogComponent>> = children(
         source = nav,
@@ -47,6 +52,8 @@ class RootComponentImpl(
             DogComponentImpl(
                 componentContext = componentContext,
                 imageUrl = config.imageUrl,
+                scope = scope,
+                defaultStoreFactory = defaultStoreFactory,
             )
         }
     )

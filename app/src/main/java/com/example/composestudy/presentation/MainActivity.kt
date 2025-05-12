@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.defaultComponentContext
+import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.example.composestudy.presentation.decompose.root.RootComponentImpl
 import com.example.composestudy.presentation.theme.ComposeStudyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val componentContext = defaultComponentContext()
-        val root = RootComponentImpl(componentContext)
+        val root = RootComponentImpl(componentContext, DefaultStoreFactory())
         setContent {
             ComposeStudyTheme {
                 // A surface container using the 'background' color from the theme
