@@ -1,7 +1,6 @@
-package com.example.composestudy.presentation.decompose.root
+package com.example.composestudy.presentation.decompose.root.customNavigation
 
 import com.arkivanov.decompose.value.Value
-import com.example.composestudy.presentation.decompose.Images
 
 interface DogComponent {
     val model: Value<Model>

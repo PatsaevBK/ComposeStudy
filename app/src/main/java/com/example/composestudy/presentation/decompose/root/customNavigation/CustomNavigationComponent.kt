@@ -1,9 +1,9 @@
-package com.example.composestudy.presentation.decompose.root
+package com.example.composestudy.presentation.decompose.root.customNavigation
 
 import com.arkivanov.decompose.Child
 import com.arkivanov.decompose.value.Value
 
-interface RootComponent {
+interface CustomNavigationComponent {
     val children: Value<Children<*, DogComponent>>
 
     class Children<out C : Any, out T : Any>(
@@ -15,4 +15,11 @@ interface RootComponent {
     enum class Mode {
         CAROUSEL, PAGER
     }
+
+    fun onForwardClick()
+    fun onBackwardClick()
+
+    fun remove()
+
+    fun onBack()
 }

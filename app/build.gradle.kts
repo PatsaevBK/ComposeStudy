@@ -87,4 +87,6 @@ dependencies {
     implementation(libs.decompose.jetpack)
 
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(kotlin("reflect"))
 }

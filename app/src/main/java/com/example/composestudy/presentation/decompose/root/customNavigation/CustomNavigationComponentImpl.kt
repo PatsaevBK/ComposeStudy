@@ -1,5 +1,6 @@
-package com.example.composestudy.presentation.decompose.root
+package com.example.composestudy.presentation.decompose.root.customNavigation
 
+import android.util.Log
 import com.arkivanov.decompose.Child
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.children.ChildNavState
@@ -9,17 +10,17 @@ import com.arkivanov.decompose.router.children.SimpleNavigation
 import com.arkivanov.decompose.router.children.children
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
-import com.example.composestudy.presentation.decompose.Images
-import com.example.composestudy.presentation.decompose.root.RootComponent.Children
-import com.example.composestudy.presentation.decompose.root.RootComponent.Mode
+import com.example.composestudy.presentation.decompose.root.customNavigation.CustomNavigationComponent.Children
+import com.example.composestudy.presentation.decompose.root.customNavigation.CustomNavigationComponent.Mode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.Serializable
 
-class RootComponentImpl(
+class CustomNavigationComponentImpl(
     componentContext: ComponentContext,
     defaultStoreFactory: DefaultStoreFactory,
-) : RootComponent, ComponentContext by componentContext {
+    private val onBack: () -> Unit,
+) : CustomNavigationComponent, ComponentContext by componentContext {
 
     private val nav = SimpleNavigation<(NavigationState) -> NavigationState>()
     private val scope = CoroutineScope(Dispatchers.Main.immediate)
@@ -30,25 +31,30 @@ class RootComponentImpl(
         key = "carousel",
         initialState = {
             NavigationState(
-                configurations = Images.entries.map(::Config),
+                configurations = Images.entries.map(CustomNavigationComponentImpl::Config),
                 index = 0,
                 mode = Mode.CAROUSEL
             )
         },
-        navTransformer = { state, transformer -> transformer(state) },
+        navTransformer = { state, transformer ->
+            Log.d("XXX","navTransformer { state = $state, transformer = $transformer}")
+            transformer(state)
+        },
         stateMapper = { state, children ->
+            Log.d("XXX","stateMapper { state = $state, children = $children }")
             Children(
                 items = children.map { it as Child.Created },
                 index = state.index,
                 mode = state.mode,
             )
         },
-        backTransformer = {
-            it.takeIf { it.index > 0 }?.let { state ->
-                { state.copy(index = state.index - 1) }
-            }
-        },
+//        backTransformer = {
+//            it.takeIf { it.index > 0 }?.let { state ->
+//                { state.copy(index = state.index - 1) }
+//            }
+//        },
         childFactory = { config, componentContext ->
+            Log.d("XXX","childFactory { config = $config, componentContext = $componentContext }")
             DogComponentImpl(
                 componentContext = componentContext,
                 imageUrl = config.imageUrl,
@@ -59,6 +65,30 @@ class RootComponentImpl(
     )
 
     override val children: Value<Children<*, DogComponent>> = _children
+
+    override fun onForwardClick() {
+        nav.navigate { navigationState ->
+            navigationState.copy(index = (navigationState.index + 1) % navigationState.configurations.size)
+        }
+    }
+
+    override fun onBackwardClick() {
+        nav.navigate { navigationState ->
+            val size = navigationState.configurations.size
+            navigationState.copy(index = (size + navigationState.index - 1) % size)
+        }
+    }
+
+    override fun remove() {
+        nav.navigate { navigationState ->
+            val configs = navigationState.configurations.dropLast(1)
+            navigationState.copy(configurations = configs)
+        }
+    }
+
+    override fun onBack() {
+        onBack.invoke()
+    }
 
     @Serializable
     private data class Config(val imageUrl: Images)

@@ -1,4 +1,4 @@
-package com.example.composestudy.presentation.decompose.root
+package com.example.composestudy.presentation.decompose.root.customNavigation
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
@@ -6,9 +6,8 @@ import com.arkivanov.essenty.lifecycle.subscribe
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
-import com.example.composestudy.presentation.decompose.Images
-import com.example.composestudy.presentation.decompose.root.store.DogComponentStoreFactory
-import com.example.composestudy.presentation.decompose.root.store.DogStore
+import com.example.composestudy.presentation.decompose.root.customNavigation.store.DogComponentStoreFactory
+import com.example.composestudy.presentation.decompose.root.customNavigation.store.DogStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

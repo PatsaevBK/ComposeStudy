@@ -1,4 +1,4 @@
-package com.example.composestudy.presentation.decompose.root.store
+package com.example.composestudy.presentation.decompose.root.customNavigation.store
 
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
@@ -19,7 +19,7 @@ internal class DogComponentStoreFactory(
             bootstrapper = coroutineBootstrapper {
 
             },
-            executorFactory = ::Executor,
+            executorFactory = DogComponentStoreFactory::Executor,
             reducer = {
                 when (it) {
                     is Message.UpdateCount -> copy(count = it.count)
